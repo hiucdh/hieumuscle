@@ -5,11 +5,11 @@ import Footer from '../components/Footer'
 
 const Home = () => {
     return (
-        <div className='home'>
+        <div className='home w-full'>
             <div className='header'>
                 <Header />
             </div>
-            <div className='hero'>
+            <div className='hero w-full'>
                 <HeroSection />
             </div>
             <div className='foot'>
