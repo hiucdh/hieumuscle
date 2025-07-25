@@ -12,9 +12,6 @@ const Home = () => {
             <div className='hero w-full'>
                 <HeroSection />
             </div>
-            <div className='foot'>
-                <Footer />
-            </div>
         </div>
     )
 }

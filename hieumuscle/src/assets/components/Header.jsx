@@ -1,12 +1,12 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
+import { NavLink } from 'react-router-dom'
 const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'Progress', href: '#', current: false },
-    { name: 'MealLog', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
-    { name: 'About', href: '#', current: false },
+    { name: 'Home', href: '/', current: true },
+    { name: 'Progress', href: 'progress', current: false },
+    { name: 'MealLog', href: 'meallog', current: false },
+    { name: 'Calendar', href: 'calendar', current: false },
+    { name: 'About', href: 'about', current: false },
 ]
 
 function classNames(...classes) {
@@ -39,19 +39,20 @@ export default function Header() {
                         <div className="hidden sm:flex sm:flex-1 sm:justify-center">
                             <div className="flex space-x-6">
                                 {navigation.map((item) => (
-                                    <a
+                                    <NavLink
                                         key={item.name}
-                                        href={item.href}
-                                        aria-current={item.current ? 'page' : undefined}
-                                        className={classNames(
-                                            item.current
-                                                ? 'bg-gray-900 text-white'
-                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                            'rounded-md px-3 py-2 text-base font-medium'
-                                        )}
+                                        to={item.href}
+                                        className={({ isActive }) =>
+                                            classNames(
+                                                isActive
+                                                    ? 'bg-gray-900 text-white'
+                                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                'rounded-md px-3 py-2 text-base font-medium'
+                                            )
+                                        }
                                     >
                                         {item.name}
-                                    </a>
+                                    </NavLink>
                                 ))}
                             </div>
                         </div>
