@@ -1,6 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 const navigation = [
     { name: 'Home', href: '/', current: true },
     { name: 'Progress', href: 'progress', current: false },
@@ -9,11 +10,13 @@ const navigation = [
     { name: 'About', href: 'about', current: false },
 ]
 
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function Header() {
+    const { user, logout } = useAuth();
     return (
         <Disclosure as="nav" className="w-full bg-gray-800 fixed top-0 z-50 shadow">
 
@@ -79,35 +82,33 @@ export default function Header() {
                                 />
                             </MenuButton>
 
-                            <MenuItems
-                                transition
-                                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-                            >
-                                <MenuItem>
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                                    >
-                                        Your Profile
-                                    </a>
-                                </MenuItem>
-                                <MenuItem>
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                                    >
-                                        Settings
-                                    </a>
-                                </MenuItem>
-                                <MenuItem>
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                                    >
-                                        Sign out
-                                    </a>
-                                </MenuItem>
+                            <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                {user ? (
+                                    <>
+                                        <MenuItem>
+                                            <span className="block px-4 py-2 text-sm text-gray-700">Xin chào, {user.username}</span>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <button
+                                                onClick={logout}
+                                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            >
+                                                Đăng xuất
+                                            </button>
+                                        </MenuItem>
+                                    </>
+                                ) : (
+                                    <MenuItem>
+                                        <NavLink
+                                            to="/login"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            Đăng nhập
+                                        </NavLink>
+                                    </MenuItem>
+                                )}
                             </MenuItems>
+
                         </Menu>
                     </div>
                 </div>
