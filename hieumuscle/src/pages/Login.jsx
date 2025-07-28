@@ -1,26 +1,30 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Cập nhật đường dẫn nếu khác
 
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
-    const navigate = useNavigate()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { login } = useAuth(); // 🟢 Sử dụng login từ context
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:8080/api/login', { email, password })
-            console.log('✅ Phản hồi từ backend:', res.data)
-            const { userId } = res.data
-            localStorage.setItem('user', JSON.stringify({ userId, email }))
-            navigate('/') // chuyển hướng về trang chủ
+            const res = await axios.post('http://localhost:8080/api/login', { email, password });
+            const { userId } = res.data;
+
+            // ✅ Gọi login để lưu vào context + localStorage
+            login({ userId, email });
+
+            navigate('/'); // Chuyển về trang chủ
         } catch (err) {
-            console.log('❌ Lỗi từ backend:', err.response?.data)
-            setError(err.response?.data?.message || 'Lỗi đăng nhập')
+            console.log('❌ Lỗi từ backend:', err.response?.data);
+            setError(err.response?.data?.message || 'Lỗi đăng nhập');
         }
-    }
+    };
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
@@ -75,7 +79,7 @@ const Login = () => {
                 </p>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

@@ -7,6 +7,8 @@ import MealLog from './pages/MealLog'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import Login from './pages/Login'
+import Register from './pages/Register'
+import Profile from './pages/Profile'
 function App() {
 
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/meallog" element={<MealLog />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
     </Routes>
 

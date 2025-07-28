@@ -17,6 +17,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    height: {
+        type: Number, // chiều cao (cm)
+        default: null
+    },
+    weight: {
+        type: Number, // cân nặng (kg)
+        default: null
+    },
     createdAt: {
         type: Date,
         default: Date.now

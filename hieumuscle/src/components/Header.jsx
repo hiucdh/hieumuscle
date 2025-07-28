@@ -1,7 +1,8 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../context/AuthContext';
+
 const navigation = [
     { name: 'Home', href: '/', current: true },
     { name: 'Progress', href: 'progress', current: false },
@@ -17,6 +18,7 @@ function classNames(...classes) {
 
 export default function Header() {
     const { user, logout } = useAuth();
+    console.log('🔍 User context hiện tại:', user);
     return (
         <Disclosure as="nav" className="w-full bg-gray-800 fixed top-0 z-50 shadow">
 
@@ -86,15 +88,21 @@ export default function Header() {
                                 {user ? (
                                     <>
                                         <MenuItem>
-                                            <span className="block px-4 py-2 text-sm text-gray-700">Xin chào, {user.username}</span>
+                                            <NavLink
+                                                to='/profile'
+                                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            >
+                                                Hồ Sơ
+                                            </NavLink>
                                         </MenuItem>
                                         <MenuItem>
-                                            <button
+                                            <NavLink
                                                 onClick={logout}
+
                                                 className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                             >
                                                 Đăng xuất
-                                            </button>
+                                            </NavLink>
                                         </MenuItem>
                                     </>
                                 ) : (
