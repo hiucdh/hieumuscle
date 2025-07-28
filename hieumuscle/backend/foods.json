@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Cơm trắng",
+    "calories": 130,
+    "protein": 2.7,
+    "carbs": 28,
+    "fat": 0.3,
+    "portion": "100g"
+  },
+  {
+    "name": "Ức gà luộc",
+    "calories": 165,
+    "protein": 31,
+    "carbs": 0,
+    "fat": 3.6,
+    "portion": "100g"
+  },
+  {
+    "name": "Trứng gà luộc",
+    "calories": 155,
+    "protein": 13,
+    "carbs": 1.1,
+    "fat": 11,
+    "portion": "100g"
+  },
+  {
+    "name": "Thịt bò nạc",
+    "calories": 250,
+    "protein": 26,
+    "carbs": 0,
+    "fat": 17,
+    "portion": "100g"
+  },
+  {
+    "name": "Cá hồi",
+    "calories": 208,
+    "protein": 20,
+    "carbs": 0,
+    "fat": 13,
+    "portion": "100g"
+  },
+  {
+    "name": "Đậu hũ trắng",
+    "calories": 76,
+    "protein": 8,
+    "carbs": 1.9,
+    "fat": 4.8,
+    "portion": "100g"
+  },
+  {
+    "name": "Yến mạch",
+    "calories": 389,
+    "protein": 16.9,
+    "carbs": 66.3,
+    "fat": 6.9,
+    "portion": "100g"
+  },
+  {
+    "name": "Sữa tươi không đường",
+    "calories": 42,
+    "protein": 3.4,
+    "carbs": 5,
+    "fat": 1,
+    "portion": "100ml"
+  },
+  {
+    "name": "Chuối",
+    "calories": 89,
+    "protein": 1.1,
+    "carbs": 23,
+    "fat": 0.3,
+    "portion": "100g"
+  },
+  {
+    "name": "Táo",
+    "calories": 52,
+    "protein": 0.3,
+    "carbs": 14,
+    "fat": 0.2,
+    "portion": "100g"
+  },
+  {
+    "name": "Rau muống luộc",
+    "calories": 19,
+    "protein": 2.6,
+    "carbs": 3.1,
+    "fat": 0.2,
+    "portion": "100g"
+  },
+  {
+    "name": "Cà rốt",
+    "calories": 41,
+    "protein": 0.9,
+    "carbs": 10,
+    "fat": 0.2,
+    "portion": "100g"
+  },
+  {
+    "name": "Bông cải xanh",
+    "calories": 34,
+    "protein": 2.8,
+    "carbs": 7,
+    "fat": 0.4,
+    "portion": "100g"
+  },
+  {
+    "name": "Khoai lang",
+    "calories": 86,
+    "protein": 1.6,
+    "carbs": 20.1,
+    "fat": 0.1,
+    "portion": "100g"
+  },
+  {
+    "name": "Bánh mì trắng",
+    "calories": 265,
+    "protein": 9,
+    "carbs": 49,
+    "fat": 3.2,
+    "portion": "100g"
+  },
+  {
+    "name": "Phô mai",
+    "calories": 402,
+    "protein": 25,
+    "carbs": 1.3,
+    "fat": 33,
+    "portion": "100g"
+  },
+  {
+    "name": "Sữa chua không đường",
+    "calories": 59,
+    "protein": 10,
+    "carbs": 3.6,
+    "fat": 0.4,
+    "portion": "100g"
+  },
+  {
+    "name": "Trà xanh",
+    "calories": 0,
+    "protein": 0,
+    "carbs": 0,
+    "fat": 0,
+    "portion": "100ml"
+  },
+  {
+    "name": "Cà phê đen",
+    "calories": 2,
+    "protein": 0.3,
+    "carbs": 0,
+    "fat": 0,
+    "portion": "100ml"
+  },
+  {
+    "name": "Nước lọc",
+    "calories": 0,
+    "protein": 0,
+    "carbs": 0,
+    "fat": 0,
+    "portion": "100ml"
+  }
+]

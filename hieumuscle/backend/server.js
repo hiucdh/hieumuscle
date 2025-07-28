@@ -5,7 +5,9 @@ import mongoose from 'mongoose'
 import authRoutes from './routes/authRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import calendarRoutes from './routes/calendarRoutes.js';
-
+import foodRoutes from './routes/foods.js';
+import nutritionRoutes from './routes/nutrition.js';
+import progressRoutes from './routes/progress.js';
 dotenv.config()
 
 const app = express()
@@ -18,7 +20,9 @@ app.use(express.json())
 app.use('/api', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/calendar', calendarRoutes);
-
+app.use('/api/foods', foodRoutes);
+app.use('/api/nutrition', nutritionRoutes);
+app.use('/api/progress', progressRoutes);
 
 // MongoDB connection
 mongoose.connect(MONGO_URI, {
