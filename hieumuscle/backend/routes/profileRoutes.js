@@ -3,7 +3,7 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Lấy thông tin user theo ID
+
 router.get('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id).select('-password');
@@ -15,7 +15,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Cập nhật thông tin profile (chiều cao, cân nặng, username nếu cần)
+
 router.put('/:id', async (req, res) => {
     const { username, height, weight } = req.body;
 

@@ -1,9 +1,9 @@
 import express from 'express';
-import Food from '../models/Foods.js'; // hoặc '../models/Foods.js' nếu bạn giữ tên file đó
+import Food from '../models/Foods.js';
 
 const router = express.Router();
 
-// ✅ API tìm kiếm theo tên (có dấu/không dấu vẫn khớp được)
+
 router.get('/search', async (req, res) => {
     const { name } = req.query;
 
@@ -12,7 +12,7 @@ router.get('/search', async (req, res) => {
     }
 
     try {
-        // Regex tìm không phân biệt hoa thường & hỗ trợ tên có dấu
+
         const regex = new RegExp(name, 'i');
         const results = await Food.find({ name: regex });
         res.json(results);

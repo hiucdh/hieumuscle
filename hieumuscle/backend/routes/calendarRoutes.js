@@ -3,7 +3,7 @@ import WorkoutLog from '../models/WorkoutLog.js';
 
 const router = express.Router();
 
-// Lấy toàn bộ lịch tập theo userId
+
 router.get('/:userId', async (req, res) => {
     try {
         const logs = await WorkoutLog.find({ userId: req.params.userId });

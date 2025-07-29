@@ -1,4 +1,4 @@
-// utils/removeVietnamese.js
+
 export function removeVietnameseTones(str) {
     return str
         .normalize('NFD')

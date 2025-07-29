@@ -18,11 +18,11 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     height: {
-        type: Number, // chiều cao (cm)
+        type: Number,
         default: null
     },
     weight: {
-        type: Number, // cân nặng (kg)
+        type: Number,
         default: null
     },
     createdAt: {

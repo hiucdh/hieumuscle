@@ -1,4 +1,4 @@
-// Calendar.jsx
+
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -114,10 +114,10 @@ const WorkoutCalendar = () => {
             await axios.post(`http://localhost:8080/api/calendar`, {
                 userId: user.userId,
                 date,
-                exercises: [newWorkout], // ✅ key đúng & là mảng
+                exercises: [newWorkout],
             });
 
-            // Cập nhật local ngay sau khi thêm
+
             setWorkoutLogs((prev) => ({
                 ...prev,
                 [date]: prev[date] ? [...prev[date], newWorkout] : [newWorkout]
@@ -129,7 +129,7 @@ const WorkoutCalendar = () => {
         }
     };
 
-    // Xoá bài tập khỏi ngày
+
     const handleDeleteWorkout = async (idx) => {
         const date = formatDate(selectedDate);
         const newList = [...(workoutLogs[date] || [])];
@@ -146,7 +146,7 @@ const WorkoutCalendar = () => {
         }
     };
 
-    // Sửa bài tập
+
     const handleEditWorkout = (idx, value) => {
         setEditIdx(idx);
         setEditValue(value);

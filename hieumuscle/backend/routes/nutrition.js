@@ -1,10 +1,10 @@
 import express from 'express';
 import NutritionLog from '../models/NutritionLog.js';
-import Food from '../models/Foods.js';
+
 
 const router = express.Router();
 
-// ✅ Lấy log theo ngày và user
+
 router.get('/:userId/:date', async (req, res) => {
     const { userId, date } = req.params;
     try {
@@ -15,7 +15,7 @@ router.get('/:userId/:date', async (req, res) => {
     }
 });
 
-// ✅ Thêm món ăn vào log
+
 router.post('/', async (req, res) => {
     const { userId, date, foodId, quantity } = req.body;
 
