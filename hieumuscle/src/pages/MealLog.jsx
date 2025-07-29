@@ -10,6 +10,9 @@ const MealLog = () => {
     const [quantity, setQuantity] = useState(1);
     const [mealLog, setMealLog] = useState([]);
     const [totals, setTotals] = useState({ calories: 0, protein: 0, carbs: 0, fat: 0 });
+    const [weight, setWeight] = useState('');
+    const [note, setNote] = useState('');
+    const [message, setMessage] = useState('');
     const user = JSON.parse(localStorage.getItem('user'));
 
     const formatDate = (date) => date.toISOString().split('T')[0];
@@ -50,6 +53,27 @@ const MealLog = () => {
             fetchMealLog();
         } catch (err) {
             console.error('Failed to add food', err);
+        }
+    };
+
+    const handleSubmitProgress = async () => {
+        if (!weight || Number(weight) <= 0) {
+            setMessage('Vui lòng nhập cân nặng hợp lệ!');
+            return;
+        }
+        try {
+            await axios.post('http://localhost:8080/api/progress', {
+                userId: user.userId,
+                date: formatDate(selectedDate),
+                weight: Number(weight),
+                note,
+                calories: totals.calories,
+            });
+            setMessage('Đã chốt calo và ghi nhận tiến độ!');
+            setWeight('');
+            setNote('');
+        } catch (err) {
+            setMessage('Có lỗi khi chốt calo!');
         }
     };
 
@@ -168,6 +192,30 @@ const MealLog = () => {
                         </tfoot>
                     </table>
                 </div>
+                <div className="flex flex-col md:flex-row gap-2 mt-4 items-center">
+                    <input
+                        type="number"
+                        step="0.1"
+                        placeholder="Cân nặng (kg)"
+                        value={weight}
+                        onChange={e => setWeight(e.target.value)}
+                        className="border px-3 py-1 rounded w-40"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Ghi chú"
+                        value={note}
+                        onChange={e => setNote(e.target.value)}
+                        className="border px-3 py-1 rounded w-60"
+                    />
+                    <button
+                        onClick={handleSubmitProgress}
+                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                    >
+                        Chốt calo
+                    </button>
+                </div>
+                {message && <div className="mt-2 text-blue-600 font-semibold">{message}</div>}
             </div>
         </div>
     );

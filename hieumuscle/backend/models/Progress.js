@@ -6,6 +6,7 @@ const progressSchema = new mongoose.Schema({
     date: { type: String, required: true }, // yyyy-mm-dd
     weight: Number,
     note: String,
+    calories: { type: Number, default: 0 },
 }, { timestamps: true });
 
 export default mongoose.model('Progress', progressSchema);
