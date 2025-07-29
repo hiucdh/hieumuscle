@@ -95,127 +95,129 @@ const MealLog = () => {
     }, [mealLog]);
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-                Nhật ký dinh dưỡng
-            </h2>
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-100 py-10">
+            <div className="max-w-3xl mx-auto rounded-3xl shadow-2xl bg-white/90 border border-green-100 p-8">
+                <h2 className="text-4xl font-extrabold text-center mb-10 text-green-700 tracking-wide drop-shadow-lg uppercase">
+                    Nhật ký dinh dưỡng
+                </h2>
 
-            <div className="mb-6 flex justify-center">
-                <Calendar
-                    value={selectedDate}
-                    onChange={setSelectedDate}
-                    className="rounded-lg border shadow-sm p-2"
-                />
-            </div>
-
-            <div className="bg-white p-4 rounded-lg shadow-md mb-8">
-                <h3 className="text-xl font-semibold text-gray-700 mb-3">
-                    Tìm món ăn
-                </h3>
-                <div className="flex flex-col sm:flex-row gap-3 items-center">
-                    <input
-                        type="text"
-                        placeholder="Nhập tên món ăn..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="border border-gray-300 px-4 py-2 rounded w-full sm:w-2/3"
+                <div className="mb-8 flex justify-center">
+                    <Calendar
+                        value={selectedDate}
+                        onChange={setSelectedDate}
+                        className="rounded-lg border shadow-xl p-2 bg-white"
                     />
-                    <input
-                        type="number"
-                        min="0.1"
-                        step="0.1"
-                        value={quantity}
-                        onChange={(e) => setQuantity(Number(e.target.value))}
-                        className="border border-gray-300 px-4 py-2 rounded w-28"
-                    />
-                    <button
-                        onClick={searchFoods}
-                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                    >
-                        Tìm kiếm
-                    </button>
                 </div>
 
-                {searchResults.length > 0 && (
-                    <ul className="mt-4 divide-y border-t">
-                        {searchResults.map(food => (
-                            <li key={food._id} className="flex justify-between items-center py-3">
-                                <span className="text-gray-800 font-medium">{food.name}</span>
-                                <button
-                                    onClick={() => addFoodToLog(food._id)}
-                                    className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                                >
-                                    Thêm
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+                <div className="bg-white p-6 rounded-2xl shadow mb-10 border border-green-100">
+                    <h3 className="text-xl font-semibold text-green-700 mb-3">
+                        Tìm món ăn
+                    </h3>
+                    <div className="flex flex-col sm:flex-row gap-3 items-center">
+                        <input
+                            type="text"
+                            placeholder="Nhập tên món ăn..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="border border-green-300 px-3 py-1.5 rounded-md w-full sm:w-2/3 focus:ring-2 focus:ring-green-200 bg-white text-gray-900 text-base"
+                        />
+                        <input
+                            type="number"
+                            min="0.1"
+                            step="0.1"
+                            value={quantity}
+                            onChange={(e) => setQuantity(Number(e.target.value))}
+                            className="border border-green-300 px-3 py-1.5 rounded-md w-24 focus:ring-2 focus:ring-green-200 bg-white text-gray-900 text-base"
+                        />
+                        <button
+                            onClick={searchFoods}
+                            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 shadow"
+                        >
+                            Tìm kiếm
+                        </button>
+                    </div>
 
-            <div className="bg-white p-4 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold text-gray-700 mb-3">
-                    Tổng kết ngày {formatDate(selectedDate)}
-                </h3>
-                <div className="overflow-x-auto">
-                    <table className="w-full text-sm text-left border border-gray-200">
-                        <thead className="bg-gray-100 text-gray-700">
-                            <tr>
-                                <th className="px-4 py-2 border">Món ăn</th>
-                                <th className="px-4 py-2 border">Số lượng</th>
-                                <th className="px-4 py-2 border">Calo</th>
-                                <th className="px-4 py-2 border">Protein</th>
-                                <th className="px-4 py-2 border">Carbs</th>
-                                <th className="px-4 py-2 border">Fat</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-gray-800">
-                            {mealLog.map(({ foodId, quantity }, idx) => (
-                                <tr key={idx} className="border-t">
-                                    <td className="px-4 py-2 border">{foodId?.name}</td>
-                                    <td className="px-4 py-2 border">{quantity}</td>
-                                    <td className="px-4 py-2 border">{(foodId?.calories * quantity).toFixed(1)}</td>
-                                    <td className="px-4 py-2 border">{(foodId?.protein * quantity).toFixed(1)}</td>
-                                    <td className="px-4 py-2 border">{(foodId?.carbs * quantity).toFixed(1)}</td>
-                                    <td className="px-4 py-2 border">{(foodId?.fat * quantity).toFixed(1)}</td>
-                                </tr>
+                    {searchResults.length > 0 && (
+                        <ul className="mt-4 divide-y border-t">
+                            {searchResults.map(food => (
+                                <li key={food._id} className="flex justify-between items-center py-3">
+                                    <span className="text-gray-800 font-medium">{food.name}</span>
+                                    <button
+                                        onClick={() => addFoodToLog(food._id)}
+                                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 shadow"
+                                    >
+                                        Thêm
+                                    </button>
+                                </li>
                             ))}
-                        </tbody>
-                        <tfoot>
-                            <tr className="font-bold bg-blue-50 text-blue-900">
-                                <td className="px-4 py-2 border" colSpan="2">Tổng</td>
-                                <td className="px-4 py-2 border">{totals.calories.toFixed(1)}</td>
-                                <td className="px-4 py-2 border">{totals.protein.toFixed(1)}</td>
-                                <td className="px-4 py-2 border">{totals.carbs.toFixed(1)}</td>
-                                <td className="px-4 py-2 border">{totals.fat.toFixed(1)}</td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                        </ul>
+                    )}
                 </div>
-                <div className="flex flex-col md:flex-row gap-2 mt-4 items-center">
-                    <input
-                        type="number"
-                        step="0.1"
-                        placeholder="Cân nặng (kg)"
-                        value={weight}
-                        onChange={e => setWeight(e.target.value)}
-                        className="border px-3 py-1 rounded w-40"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Ghi chú"
-                        value={note}
-                        onChange={e => setNote(e.target.value)}
-                        className="border px-3 py-1 rounded w-60"
-                    />
-                    <button
-                        onClick={handleSubmitProgress}
-                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                    >
-                        Chốt calo
-                    </button>
+
+                <div className="bg-white p-6 rounded-2xl shadow border border-green-100">
+                    <h3 className="text-xl font-semibold text-green-700 mb-3">
+                        Tổng kết ngày {formatDate(selectedDate)}
+                    </h3>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm text-left border border-green-200 rounded-xl shadow bg-white">
+                            <thead className="bg-green-50 text-green-900">
+                                <tr>
+                                    <th className="px-4 py-2 border-b font-bold">Món ăn</th>
+                                    <th className="px-4 py-2 border-b font-bold">Số lượng</th>
+                                    <th className="px-4 py-2 border-b font-bold">Calo</th>
+                                    <th className="px-4 py-2 border-b font-bold">Protein</th>
+                                    <th className="px-4 py-2 border-b font-bold">Carbs</th>
+                                    <th className="px-4 py-2 border-b font-bold">Fat</th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-gray-800">
+                                {mealLog.map(({ foodId, quantity }, idx) => (
+                                    <tr key={idx} className="border-t hover:bg-green-50 transition">
+                                        <td className="px-4 py-2 border-b font-semibold text-green-900">{foodId?.name}</td>
+                                        <td className="px-4 py-2 border-b">{quantity}</td>
+                                        <td className="px-4 py-2 border-b font-semibold text-orange-600">{(foodId?.calories * quantity).toFixed(1)}</td>
+                                        <td className="px-4 py-2 border-b">{(foodId?.protein * quantity).toFixed(1)}</td>
+                                        <td className="px-4 py-2 border-b">{(foodId?.carbs * quantity).toFixed(1)}</td>
+                                        <td className="px-4 py-2 border-b">{(foodId?.fat * quantity).toFixed(1)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                            <tfoot>
+                                <tr className="font-bold bg-green-50 text-green-900">
+                                    <td className="px-4 py-2 border-b" colSpan="2">Tổng</td>
+                                    <td className="px-4 py-2 border-b">{totals.calories.toFixed(1)}</td>
+                                    <td className="px-4 py-2 border-b">{totals.protein.toFixed(1)}</td>
+                                    <td className="px-4 py-2 border-b">{totals.carbs.toFixed(1)}</td>
+                                    <td className="px-4 py-2 border-b">{totals.fat.toFixed(1)}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-2 mt-6 items-center justify-center">
+                        <input
+                            type="number"
+                            step="0.1"
+                            placeholder="Cân nặng (kg)"
+                            value={weight}
+                            onChange={e => setWeight(e.target.value)}
+                            className="border border-green-300 px-3 py-2 rounded-md w-40 focus:ring-2 focus:ring-green-200 bg-white text-gray-900 text-base"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Ghi chú"
+                            value={note}
+                            onChange={e => setNote(e.target.value)}
+                            className="border border-green-300 px-3 py-2 rounded-md w-60 focus:ring-2 focus:ring-green-200 bg-white text-gray-900 text-base"
+                        />
+                        <button
+                            onClick={handleSubmitProgress}
+                            className="bg-green-600 text-white px-6 py-2 rounded-lg font-bold shadow hover:bg-green-700 transition"
+                        >
+                            Chốt calo
+                        </button>
+                    </div>
+                    {message && <div className="mt-4 text-green-700 font-semibold text-center">{message}</div>}
                 </div>
-                {message && <div className="mt-2 text-blue-600 font-semibold">{message}</div>}
             </div>
         </div>
     );

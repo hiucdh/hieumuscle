@@ -47,76 +47,80 @@ const Profile = () => {
     }
 
     return (
-        <div className="max-w-xl mx-auto mt-20 bg-white p-6 rounded shadow">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Hồ sơ người dùng</h2>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-100 py-10 flex justify-center items-start">
+            <div className="max-w-lg w-full bg-white/95 p-8 rounded-3xl shadow-2xl border border-blue-100">
+                <h2 className="text-3xl font-extrabold mb-8 text-center text-blue-800 tracking-wide drop-shadow-lg uppercase">
+                    Hồ sơ người dùng
+                </h2>
 
-            <div className="space-y-4">
-                <div>
-                    <label className="block font-medium text-gray-600">Username:</label>
-                    <p className="text-gray-900">{userInfo.username}</p>
-                </div>
+                <div className="space-y-6">
+                    <div>
+                        <label className="block font-medium text-gray-600 mb-1">Username:</label>
+                        <div className="bg-blue-50 rounded-lg px-4 py-2 text-blue-900 font-semibold shadow-inner">{userInfo.username}</div>
+                    </div>
 
-                <div>
-                    <label className="block font-medium text-gray-600">Email:</label>
-                    <p className="text-gray-900">{userInfo.email}</p>
-                </div>
+                    <div>
+                        <label className="block font-medium text-gray-600 mb-1">Email:</label>
+                        <div className="bg-blue-50 rounded-lg px-4 py-2 text-blue-900 font-semibold shadow-inner">{userInfo.email}</div>
+                    </div>
 
-                <div>
-                    <label className="block font-medium text-gray-600">Chiều cao (cm):</label>
-                    {isEditing ? (
-                        <input
-                            type="number"
-                            name="height"
-                            value={userInfo.height}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                        />
-                    ) : (
-                        <p className="text-gray-900">{userInfo.height || 'Chưa có'}</p>
-                    )}
-                </div>
+                    <div>
+                        <label className="block font-medium text-gray-600 mb-1">Chiều cao (cm):</label>
+                        {isEditing ? (
+                            <input
+                                type="number"
+                                name="height"
+                                value={userInfo.height}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-200 bg-white text-gray-900 text-base shadow"
+                            />
+                        ) : (
+                            <div className="bg-green-50 rounded-lg px-4 py-2 text-green-900 font-semibold shadow-inner">{userInfo.height || 'Chưa có'}</div>
+                        )}
+                    </div>
 
-                <div>
-                    <label className="block font-medium text-gray-600">Cân nặng (kg):</label>
-                    {isEditing ? (
-                        <input
-                            type="number"
-                            name="weight"
-                            value={userInfo.weight}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                        />
-                    ) : (
-                        <p className="text-gray-900">{userInfo.weight || 'Chưa có'}</p>
-                    )}
-                </div>
+                    <div>
+                        <label className="block font-medium text-gray-600 mb-1">Cân nặng (kg):</label>
+                        {isEditing ? (
+                            <input
+                                type="number"
+                                name="weight"
+                                value={userInfo.weight}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-200 bg-white text-gray-900 text-base shadow"
+                            />
+                        ) : (
+                            <div className="bg-green-50 rounded-lg px-4 py-2 text-green-900 font-semibold shadow-inner">{userInfo.weight || 'Chưa có'}</div>
+                        )}
+                    </div>
 
-                {message && <p className="text-sm text-center text-blue-600">{message}</p>}
+                    {message && <p className="text-sm text-center text-blue-600 font-semibold">{message}</p>}
 
-                <div className="text-center">
-                    {isEditing ? (
-                        <>
+                    <div className="text-center mt-6">
+                        {isEditing ? (
+                            <>
+                                <button
+                                    onClick={handleUpdate}
+                                    className="bg-green-600 text-white px-6 py-2 rounded-lg font-bold shadow hover:bg-green-700 transition mr-2"
+                                >
+                                    Lưu
+                                </button>
+                                <button
+                                    onClick={() => setIsEditing(false)}
+                                    className="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg font-bold shadow hover:bg-gray-300 transition"
+                                >
+                                    Hủy
+                                </button>
+                            </>
+                        ) : (
                             <button
-                                onClick={handleUpdate}
-                                className="bg-blue-600 text-white px-4 py-2 rounded mr-2"
+                                onClick={() => setIsEditing(true)}
+                                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold shadow hover:bg-blue-700 transition"
                             >
-                                Lưu
+                                Chỉnh sửa
                             </button>
-                            <button
-                                onClick={() => setIsEditing(false)}
-                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
-                            >
-                                Hủy
-                            </button>
-                        </>
-                    ) : (
-                        <button
-                            onClick={() => setIsEditing(true)}
-                            className="bg-blue-600 text-white px-4 py-2 rounded"
-                        >
-                            Chỉnh sửa
-                        </button>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

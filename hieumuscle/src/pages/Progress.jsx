@@ -75,35 +75,55 @@ const ProgressPage = () => {
     };
 
     return (
-        <div className="p-6 max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold text-center mb-6">Theo dõi tiến độ</h2>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 py-10">
+            <div className="max-w-4xl mx-auto rounded-3xl shadow-2xl bg-white/90 border border-blue-100 p-8">
+                <h2 className="text-4xl font-extrabold text-center mb-10 text-blue-800 tracking-wide drop-shadow-lg uppercase">
+                    Theo dõi tiến độ
+                </h2>
 
-            {/* Đã xoá Calendar và form nhập cân nặng, ghi chú */}
+                <div className="bg-white p-6 rounded-2xl shadow mb-10 border border-blue-100">
+                    <Line data={chartData} options={{
+                        plugins: {
+                            legend: {
+                                labels: { color: '#1e293b', font: { size: 16, weight: 'bold' } }
+                            }
+                        },
+                        scales: {
+                            x: { ticks: { color: '#64748b', font: { size: 14 } } },
+                            y: { ticks: { color: '#64748b', font: { size: 14 } } }
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }} height={350} />
+                </div>
 
-            <div className="bg-white p-4 rounded shadow mb-6">
-                <Line data={chartData} />
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left border border-blue-200 rounded-xl shadow bg-white">
+                        <thead className="bg-blue-50 text-blue-900">
+                            <tr>
+                                <th className="p-3 border-b font-bold">Ngày</th>
+                                <th className="p-3 border-b font-bold">Cân nặng (kg)</th>
+                                <th className="p-3 border-b font-bold">Calories</th>
+                                <th className="p-3 border-b font-bold">Ghi chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {progressData.length === 0 ? (
+                                <tr>
+                                    <td colSpan={4} className="text-center py-8 text-gray-400">Chưa có dữ liệu tiến độ.</td>
+                                </tr>
+                            ) : progressData.map((p, idx) => (
+                                <tr key={idx} className="border-t hover:bg-blue-50 transition">
+                                    <td className="p-3 border-b font-semibold text-blue-900">{p.date}</td>
+                                    <td className="p-3 border-b font-semibold text-blue-700">{p.weight}</td>
+                                    <td className="p-3 border-b font-semibold text-orange-600">{p.calories}</td>
+                                    <td className="p-3 border-b text-gray-700">{p.note}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-            <table className="w-full text-left border text-sm">
-                <thead className="bg-gray-100">
-                    <tr>
-                        <th className="p-2 border">Ngày</th>
-                        <th className="p-2 border">Cân nặng (kg)</th>
-                        <th className="p-2 border">Calories</th>
-                        <th className="p-2 border">Ghi chú</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {progressData.map((p, idx) => (
-                        <tr key={idx} className="border-t">
-                            <td className="p-2 border">{p.date}</td>
-                            <td className="p-2 border">{p.weight}</td>
-                            <td className="p-2 border">{p.calories}</td>
-                            <td className="p-2 border text-gray-700">{p.note}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
         </div>
     );
 };
